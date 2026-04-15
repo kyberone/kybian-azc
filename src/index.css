@@ -1,0 +1,61 @@
+:root {
+  --azc-blue: #00d2ff;
+  --azc-teal: #3a7bd5;
+  --azc-bg: #f0f4f8;
+  --azc-glass: rgba(255, 255, 255, 0.7);
+  --azc-text: #1a2a3a;
+  --azc-accent: #007bff;
+  --font-corporate: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--azc-bg);
+  color: var(--azc-text);
+  font-family: var(--font-corporate);
+  line-height: 1.6;
+}
+
+.glass-card {
+  background: var(--azc-glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  border-radius: 12px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--azc-teal), var(--azc-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.azc-btn {
+  background: linear-gradient(90deg, var(--azc-teal), var(--azc-blue));
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.azc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(58, 123, 213, 0.3);
+}
+
+.azc-btn-secondary {
+  background: transparent;
+  border: 2px solid var(--azc-teal);
+  color: var(--azc-teal);
+}

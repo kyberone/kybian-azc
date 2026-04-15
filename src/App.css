@@ -1,0 +1,311 @@
+.azc-container {
+  min-height: 100vh;
+}
+
+.azc-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.nav-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-text {
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--azc-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--azc-teal);
+}
+
+.nav-hub {
+  padding: 6px 15px;
+  border: 1px solid var(--azc-text);
+  border-radius: 4px;
+}
+
+/* Hero */
+.azc-hero {
+  height: 600px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hero-img-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  filter: brightness(0.9);
+}
+
+.hero-card {
+  max-width: 700px;
+  padding: 60px;
+  text-align: center;
+}
+
+.hero-card h1 {
+  font-size: 3rem;
+  margin-bottom: 25px;
+  line-height: 1.1;
+}
+
+.hero-card p {
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  opacity: 0.8;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Sections */
+.azc-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.investor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 100px;
+}
+
+.stat-card {
+  padding: 40px;
+  text-align: center;
+}
+
+.stat-icon {
+  margin-bottom: 15px;
+  color: var(--azc-teal);
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+  color: var(--azc-teal);
+}
+
+.stat-card p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.chart-card {
+  padding: 30px;
+  grid-column: span 1;
+}
+
+.chart-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.simple-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  height: 120px;
+}
+
+.bar {
+  flex-grow: 1;
+  background: linear-gradient(0deg, var(--azc-teal), var(--azc-blue));
+  border-radius: 4px 4px 0 0;
+}
+
+/* Product */
+.catalog-section {
+  margin-bottom: 100px;
+}
+
+.product-display {
+  display: flex;
+  padding: 60px;
+  gap: 60px;
+  align-items: center;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.spec-list {
+  margin: 25px 0;
+  list-style: none;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spec-list li::before {
+  content: "✓";
+  color: var(--azc-teal);
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.product-img-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.product-img-wrap img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Careers */
+.careers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.career-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.career-card:hover {
+  transform: scale(1.02);
+}
+
+.career-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.career-card p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.contract-tag, .fulltime-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(0,0,0,0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Footer */
+.azc-footer {
+  background: white;
+  padding: 60px 20px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.footer-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .product-display {
+    flex-direction: column-reverse;
+    padding: 30px;
+  }
+  .hero-card h1 {
+    font-size: 2rem;
+  }
+  .nav-links {
+    display: none;
+  }
+}
