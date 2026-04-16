@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { BarChart3, Package, ArrowRight, ShieldCheck, Globe, TrendingUp, Lock, Wallet, Activity } from 'lucide-react';
 import './App.css';
 
