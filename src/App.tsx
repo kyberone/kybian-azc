@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BarChart3, Package, ArrowRight, ShieldCheck, Globe, TrendingUp, Lock, Wallet, Activity } from 'lucide-react';
+import { BarChart3, Package, ArrowRight, ShieldCheck, Globe, TrendingUp, Lock, Wallet, Activity, UserPlus, ChevronRight } from 'lucide-react';
 import './App.css';
 
 const stocks = [
