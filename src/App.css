@@ -388,9 +388,51 @@ body {
   justify-content: space-between;
 }
 
-.footer-links {
-  display: flex;
-  gap: 20px;
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-wrap {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 15px;
+    font-size: 0.7rem;
+  }
+
+  .azc-hero {
+    height: auto;
+    padding: 100px 0 40px 0;
+  }
+
+  .text-gradient {
+    font-size: 2rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+  }
+
+  .investor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-display {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-wrap {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
 }
 
-.footer-links a { color: #fff; text-decoration: none; }
