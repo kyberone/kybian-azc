@@ -190,7 +190,7 @@ function App() {
 
       <footer className="azc-footer">
         <div className="footer-wrap">
-          <p>© 342 AF Astra Zempari Corporation. All rights reserved. // A Member of the Global Trade Accord.</p>
+          <p>© 52 AF Astra Zempari Corporation. All rights reserved. // A Member of the Global Trade Accord.</p>
           <div className="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Legal</a>

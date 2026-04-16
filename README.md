@@ -17,4 +17,4 @@ AZC holds a near-total monopoly on current Kybian refinement processes. We profi
 Astra Zempari Corp is a founding member of the Global Trade Accord. Unauthorized disclosure of refinement purity standards is a violation of contract law.
 
 ---
-*© 342 AF Astra Zempari Corporation. All rights reserved.*
+*© 52 AF Astra Zempari Corporation. All rights reserved.*
