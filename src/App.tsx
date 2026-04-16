@@ -1,11 +1,50 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { BarChart3, Package, UserPlus, ArrowRight, ShieldCheck, Globe, TrendingUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BarChart3, Package, UserPlus, ArrowRight, ShieldCheck, Globe, TrendingUp, Lock, Wallet, ChevronRight, Activity } from 'lucide-react';
 import './App.css';
 
+const stocks = [
+  { name: 'AZC', price: '422.14', change: '+2.4%' },
+  { name: 'MDT', price: '88.10', change: '-1.2%' },
+  { name: 'AXM', price: '12.45', change: '+0.5%' },
+  { name: 'KYB-A', price: '842.12', change: '+5.8%' },
+  { name: 'KYB-X', price: '1244.00', change: '-3.1%' },
+];
+
 function App() {
+  const [wealth, setWealth] = useState(1245000);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginInput, setLoginInput] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWealth(prev => prev + Math.floor(Math.random() * 100));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginInput.length > 5) setIsLoggedIn(true);
+  };
+
   return (
     <div className="azc-container">
+      {/* Market Ticker */}
+      <div className="market-ticker">
+        <div className="ticker-wrap">
+          {stocks.concat(stocks).map((stock, i) => (
+            <div key={i} className="ticker-item">
+              <span className="stock-name">{stock.name}</span>
+              <span className="stock-price">{stock.price}</span>
+              <span className={`stock-change ${stock.change.startsWith('+') ? 'up' : 'down'}`}>
+                {stock.change}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Navigation */}
       <nav className="azc-nav">
         <div className="nav-wrap">
@@ -27,15 +66,15 @@ function App() {
         <div className="hero-img-bg" style={{ backgroundImage: `url('/images/azc-hero.png')` }} />
         <div className="hero-content">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             className="glass-card hero-card"
           >
             <h1 className="text-gradient">Powering the Future of the Fracture</h1>
             <p>AZC is the leading provider of refined Kybian isotopes. We specialize in safe, high-yield energy solutions for starships, stations, and systems across the galaxy.</p>
             <div className="hero-btns">
-              <button className="azc-btn">Refinement Tiers</button>
-              <button className="azc-btn azc-btn-secondary">Investor Portal</button>
+              <a href="#catalog" className="azc-btn">Refinement Tiers</a>
+              <a href="#investors" className="azc-btn azc-btn-secondary">Investor Portal</a>
             </div>
           </motion.div>
         </div>
@@ -59,8 +98,36 @@ function App() {
               <h3>100%</h3>
               <p>Monopoly in the Shallows</p>
             </div>
+            
+            <div className="glass-card login-card">
+              {!isLoggedIn ? (
+                <div className="login-prompt">
+                  <div className="card-top"><Lock size={16} /> SHAREHOLDER LOGIN</div>
+                  <form onSubmit={handleLogin}>
+                    <input 
+                      type="password" 
+                      placeholder="ACCESS KEY" 
+                      value={loginInput}
+                      onChange={(e) => setLoginInput(e.target.value)}
+                    />
+                    <button type="submit">AUTHENTICATE</button>
+                  </form>
+                </div>
+              ) : (
+                <div className="wealth-tracker">
+                  <div className="card-top"><Wallet size={16} /> ACCUMULATED WEALTH</div>
+                  <div className="wealth-amount">
+                    <span className="currency">C</span>
+                    {wealth.toLocaleString()}
+                  </div>
+                  <div className="wealth-growth">REAL-TIME APPRECIATION: +0.02% / SEC</div>
+                  <button onClick={() => setWealth(w => w + 500)} className="azc-btn-sm">REINVEST DIVIDENDS</button>
+                </div>
+              )}
+            </div>
+
             <div className="glass-card chart-card">
-              <p className="chart-title">QUARTERLY REFINEMENT OUTPUT</p>
+              <div className="card-top"><Activity size={16} /> OUTPUT METRICS</div>
               <div className="simple-chart">
                 <div className="bar" style={{ height: '40%' }}></div>
                 <div className="bar" style={{ height: '65%' }}></div>
@@ -82,9 +149,9 @@ function App() {
               <h3>PULSE-GRADE KYBIAN</h3>
               <p>Standard Mandate fuel, refined to AZC's proprietary 99.8% purity standard. Safe for Core-class engines.</p>
               <ul className="spec-list">
-                <li>Stability Rating: EXCELLENT</li>
-                <li>Thermal Limit: 4,200K</li>
-                <li>Refinement ID: AZC-ALPHA-01</li>
+                <li><ChevronRight size={14} /> Stability Rating: EXCELLENT</li>
+                <li><ChevronRight size={14} /> Thermal Limit: 4,200K</li>
+                <li><ChevronRight size={14} /> Refinement ID: AZC-ALPHA-01</li>
               </ul>
               <button className="azc-btn">Download Specs</button>
             </div>
@@ -136,3 +203,4 @@ function App() {
 }
 
 export default App;
+
