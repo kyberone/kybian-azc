@@ -121,10 +121,85 @@ body {
 
 .nav-links a:hover { opacity: 1; }
 
-.nav-hub {
-  border: 1px solid var(--azc-teal);
-  padding: 5px 15px;
+.nav-game-btn {
+  background: transparent;
+  border: none;
+  color: var(--azc-white);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.3s;
+  padding: 0;
 }
+
+.nav-game-btn:hover { opacity: 1; color: var(--azc-teal-light); }
+
+.trader-access-section {
+  margin-bottom: 80px;
+}
+
+.access-card {
+  background: linear-gradient(135deg, rgba(0, 128, 128, 0.1) 0%, rgba(15, 23, 42, 0.4) 100%);
+  border-color: var(--azc-teal);
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.access-info h3 {
+  letter-spacing: 4px;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.access-info p {
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Modal */
+.game-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+}
+
+.game-modal-content {
+  position: relative;
+  width: 95%;
+  max-width: 700px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--azc-teal-light);
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.modal-close:hover {
+  text-shadow: 0 0 10px var(--azc-teal-light);
+}
+
+.mb-20 { margin-bottom: 20px; }
 
 /* Hero */
 .azc-hero {

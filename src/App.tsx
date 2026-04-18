@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { BarChart3, Package, ArrowRight, ShieldCheck, Globe, TrendingUp, Lock, Wallet, Activity, UserPlus, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BarChart3, Package, ArrowRight, ShieldCheck, Globe, TrendingUp, Lock, Wallet, Activity, UserPlus, ChevronRight, PieChart } from 'lucide-react';
+import VoidTrader from './components/VoidTrader';
 import './App.css';
 
 const stocks = [
@@ -15,6 +16,7 @@ function App() {
   const [wealth, setWealth] = useState(1245000);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginInput, setLoginInput] = useState('');
+  const [isGameOpen, setIsGameOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,6 +56,7 @@ function App() {
           </div>
           <div className="nav-links">
             <a href="#investors">Investors</a>
+            <button onClick={() => setIsGameOpen(true)} className="nav-game-btn">Void-Trader</button>
             <a href="#catalog">Products</a>
             <a href="#careers">Careers</a>
             <a href="https://kybian.com" className="nav-hub">Relay Hub</a>
@@ -81,6 +84,21 @@ function App() {
       </section>
 
       <main className="azc-main">
+        {/* Void Trader Access */}
+        <section id="trader" className="trader-access-section">
+          <div className="section-header">
+            <PieChart className="azc-teal" />
+            <h2>Alpha Market Terminal</h2>
+          </div>
+          <div className="glass-card access-card">
+            <div className="access-info">
+              <h3>KYBIAN_FUTURES_TRADING</h3>
+              <p>Execute high-frequency trades on Kybian-Alpha isotopes. Leverage corporate intel to maximize dividends before the scheduled blackout.</p>
+              <button onClick={() => setIsGameOpen(true)} className="azc-btn">INITIALIZE_TERMINAL</button>
+            </div>
+          </div>
+        </section>
+
         {/* Investor Section */}
         <section id="investors" className="investor-section">
           <div className="section-header">
@@ -198,6 +216,29 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <AnimatePresence>
+        {isGameOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="game-modal-overlay"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="game-modal-content"
+            >
+              <button className="modal-close" onClick={() => setIsGameOpen(false)}>
+                [ DISCONNECT_TERMINAL ]
+              </button>
+              <VoidTrader />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
