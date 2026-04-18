@@ -222,7 +222,7 @@ const VoidTrader: React.FC = () => {
           onTouchEnd={stopRepeating}
           disabled={gameState !== 'PLAYING' || balance < currentPrice}
         >
-          BUY_UNIT (HOLD)
+          BUY_UNIT
         </button>
         <button 
           className="trade-btn sell" 
@@ -233,7 +233,7 @@ const VoidTrader: React.FC = () => {
           onTouchEnd={stopRepeating}
           disabled={gameState !== 'PLAYING' || holdings <= 0}
         >
-          SELL_UNIT (HOLD)
+          SELL_UNIT
         </button>
       </div>
 
