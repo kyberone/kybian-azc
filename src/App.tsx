@@ -84,21 +84,6 @@ function App() {
       </section>
 
       <main className="azc-main">
-        {/* Void Trader Access */}
-        <section id="trader" className="trader-access-section">
-          <div className="section-header">
-            <PieChart className="azc-teal" />
-            <h2>Alpha Market Terminal</h2>
-          </div>
-          <div className="glass-card access-card">
-            <div className="access-info">
-              <h3>KYBIAN_FUTURES_TRADING</h3>
-              <p>Execute high-frequency trades on Kybian-Alpha isotopes. Leverage corporate intel to maximize dividends before the scheduled blackout.</p>
-              <button onClick={() => setIsGameOpen(true)} className="azc-btn">INITIALIZE_TERMINAL</button>
-            </div>
-          </div>
-        </section>
-
         {/* Investor Section */}
         <section id="investors" className="investor-section">
           <div className="section-header">
@@ -201,6 +186,21 @@ function App() {
                 <span className="fulltime-tag">FULL-TIME</span>
                 <ArrowRight size={18} />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Void Trader Access */}
+        <section id="trader" className="trader-access-section">
+          <div className="section-header">
+            <PieChart className="azc-teal" />
+            <h2>Alpha Market Terminal</h2>
+          </div>
+          <div className="glass-card access-card">
+            <div className="access-info">
+              <h3>KYBIAN_FUTURES_TRADING</h3>
+              <p>Execute high-frequency trades on Kybian-Alpha isotopes. Leverage corporate intel to maximize dividends before the scheduled blackout.</p>
+              <button onClick={() => setIsGameOpen(true)} className="azc-btn">INITIALIZE_TERMINAL</button>
             </div>
           </div>
         </section>
