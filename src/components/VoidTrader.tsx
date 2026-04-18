@@ -10,20 +10,20 @@ interface PricePoint {
 
 const VoidTrader: React.FC = () => {
   const [gameState, setGameState] = useState<'IDLE' | 'PLAYING' | 'GAMEOVER'>('IDLE');
-  const [balance, setWealth] = useState(10000);
+  const [balance, setWealth] = useState(15000);
   const [holdings, setHoldings] = useState(0);
   const [priceHistory, setPriceHistory] = useState<PricePoint[]>([]);
   const [currentPrice, setCurrentPrice] = useState(100);
   const [timeRemaining, setTimeRemaining] = useState(120); // 2 minutes
   const [activeEvent, setActiveEvent] = useState<string | null>(null);
   
-  const targetWealth = 100000;
+  const targetWealth = 50000;
   const maxPriceHistory = 40;
   const priceRef = useRef(100);
-  const volatilityRef = useRef(0.05);
+  const volatilityRef = useRef(0.07);
 
   // Refs for repeat action logic
-  const balanceRef = useRef(10000);
+  const balanceRef = useRef(15000);
   const holdingsRef = useRef(0);
   const repeatIntervalRef = useRef<number | null>(null);
 
@@ -92,7 +92,7 @@ const VoidTrader: React.FC = () => {
   }, [gameState, updatePrice, spawnEvent]);
 
   const startGame = () => {
-    setWealth(10000);
+    setWealth(15000);
     setHoldings(0);
     setPriceHistory([{ price: 100, time: Date.now() }]);
     priceRef.current = 100;
@@ -246,7 +246,7 @@ const VoidTrader: React.FC = () => {
               <ul>
                 <li>• KYBIAN PRICE FLUCTUATES IN REAL-TIME</li>
                 <li>• HOLD BUY/SELL BUTTONS FOR RAPID EXECUTION</li>
-                <li>• REACH 100,000 C BEFORE THE BLACKOUT</li>
+                <li>• REACH 50,000 C BEFORE THE BLACKOUT</li>
                 <li>• WATCH FOR MARKET EVENTS</li>
               </ul>
             </div>
