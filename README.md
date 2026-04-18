@@ -12,6 +12,7 @@ AZC holds a near-total monopoly on current Kybian refinement processes. We profi
 - **Market Ticker:** Real-time galactic stock indices for all major industrial and political entities.
 - **Refinement Catalog:** Specifications for Pulse-Grade and specialized Alpha-isotopes.
 - **Recruitment Board:** High-risk contract opportunities for Veil-Diver pilots and engineers.
+- **Void Trader:** Real-time market simulation. Buy and sell Kybian futures to reach wealth targets before the blackout. (Accessible via Alpha Market Terminal)
 
 ## [ LEGAL NOTICE ]
 Astra Zempari Corp is a founding member of the Global Trade Accord. Unauthorized disclosure of refinement purity standards is a violation of contract law.
