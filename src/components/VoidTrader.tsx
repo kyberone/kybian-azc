@@ -22,6 +22,15 @@ const VoidTrader: React.FC = () => {
   const priceRef = useRef(100);
   const volatilityRef = useRef(0.05);
 
+  // Refs for repeat action logic
+  const balanceRef = useRef(10000);
+  const holdingsRef = useRef(0);
+  const repeatIntervalRef = useRef<number | null>(null);
+
+  // Keep refs in sync with state for the interval closure
+  useEffect(() => { balanceRef.current = balance; }, [balance]);
+  useEffect(() => { holdingsRef.current = holdings; }, [holdings]);
+
   const spawnEvent = useCallback(() => {
     const events = [
       { name: "DIRECTORATE RAID", vol: 0.15, trend: -10 },
@@ -78,6 +87,7 @@ const VoidTrader: React.FC = () => {
       clearInterval(priceInterval);
       clearInterval(eventInterval);
       clearInterval(timerInterval);
+      if (repeatIntervalRef.current) clearInterval(repeatIntervalRef.current);
     };
   }, [gameState, updatePrice, spawnEvent]);
 
@@ -90,17 +100,45 @@ const VoidTrader: React.FC = () => {
     setGameState('PLAYING');
   };
 
-  const buy = () => {
-    if (balance >= currentPrice) {
-      setWealth(prev => prev - currentPrice);
+  const buy = useCallback(() => {
+    if (balanceRef.current >= priceRef.current) {
+      setWealth(prev => prev - Math.floor(priceRef.current));
       setHoldings(prev => prev + 1);
+      return true;
     }
+    return false;
+  }, []);
+
+  const sell = useCallback(() => {
+    if (holdingsRef.current > 0) {
+      setWealth(prev => prev + Math.floor(priceRef.current));
+      setHoldings(prev => prev - 1);
+      return true;
+    }
+    return false;
+  }, []);
+
+  const startRepeating = (action: () => boolean) => {
+    if (gameState !== 'PLAYING') return;
+    
+    // Initial trigger
+    const success = action();
+    if (!success) return;
+
+    // Start interval
+    if (repeatIntervalRef.current) clearInterval(repeatIntervalRef.current);
+    repeatIntervalRef.current = window.setInterval(() => {
+      const stillSucceeding = action();
+      if (!stillSucceeding) {
+        if (repeatIntervalRef.current) clearInterval(repeatIntervalRef.current);
+      }
+    }, 100); // 10 trades per second
   };
 
-  const sell = () => {
-    if (holdings > 0) {
-      setWealth(prev => prev + currentPrice);
-      setHoldings(prev => prev - 1);
+  const stopRepeating = () => {
+    if (repeatIntervalRef.current) {
+      clearInterval(repeatIntervalRef.current);
+      repeatIntervalRef.current = null;
     }
   };
 
@@ -111,7 +149,7 @@ const VoidTrader: React.FC = () => {
       <div className="trader-header">
         <div className="header-info">
           <Briefcase size={16} className="azc-teal" />
-          <span className="mono">VOID_TRADER_v4.2 // AZC_PROPRIETARY</span>
+          <span className="mono">VOID_TRADER_v4.3 // AUTO_EXEC_ENABLED</span>
         </div>
         <div className="timer-box">
           TIME_UNTIL_BLACKOUT: <span className={timeRemaining < 30 ? 'critical' : ''}>{timeRemaining}s</span>
@@ -175,11 +213,27 @@ const VoidTrader: React.FC = () => {
       </div>
 
       <div className="trade-controls">
-        <button className="trade-btn buy" onClick={buy} disabled={gameState !== 'PLAYING' || balance < currentPrice}>
-          BUY_UNIT
+        <button 
+          className="trade-btn buy" 
+          onMouseDown={() => startRepeating(buy)}
+          onMouseUp={stopRepeating}
+          onMouseLeave={stopRepeating}
+          onTouchStart={() => startRepeating(buy)}
+          onTouchEnd={stopRepeating}
+          disabled={gameState !== 'PLAYING' || balance < currentPrice}
+        >
+          BUY_UNIT (HOLD)
         </button>
-        <button className="trade-btn sell" onClick={sell} disabled={gameState !== 'PLAYING' || holdings <= 0}>
-          SELL_UNIT
+        <button 
+          className="trade-btn sell" 
+          onMouseDown={() => startRepeating(sell)}
+          onMouseUp={stopRepeating}
+          onMouseLeave={stopRepeating}
+          onTouchStart={() => startRepeating(sell)}
+          onTouchEnd={stopRepeating}
+          disabled={gameState !== 'PLAYING' || holdings <= 0}
+        >
+          SELL_UNIT (HOLD)
         </button>
       </div>
 
@@ -191,7 +245,7 @@ const VoidTrader: React.FC = () => {
               <h4>MARKET PROTOCOL:</h4>
               <ul>
                 <li>• KYBIAN PRICE FLUCTUATES IN REAL-TIME</li>
-                <li>• BUY LOW, SELL HIGH TO ACCUMULATE WEALTH</li>
+                <li>• HOLD BUY/SELL BUTTONS FOR RAPID EXECUTION</li>
                 <li>• REACH 100,000 C BEFORE THE BLACKOUT</li>
                 <li>• WATCH FOR MARKET EVENTS</li>
               </ul>
